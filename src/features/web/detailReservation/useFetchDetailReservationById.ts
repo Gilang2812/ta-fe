@@ -1,0 +1,31 @@
+import { useAxiosAuth } from "@/lib/axios";
+import { useSocketStore } from "@/stores/socketStore";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useEffect } from "react";
+
+export const useFetchDetailReservationByID = (id?: string) => {
+  const { socket, joinRoom, leaveRoom } = useSocketStore();
+  const queryClient = useQueryClient();
+  useEffect(() => {
+    if (!socket || !id) return;
+    joinRoom(`detailReservation:${id}`);
+    const handler = () => {
+      queryClient.invalidateQueries({ queryKey: ["detailReservation", id] });
+    };
+    socket.on("detailReservation", handler);
+    return () => {
+      leaveRoom(`detailReservation:${id}`);
+      socket.off("detailReservation", handler);
+    };
+  }, [socket, joinRoom, leaveRoom, queryClient, id]);
+
+  const axiosInstance = useAxiosAuth();
+  return useQuery({
+    queryKey: ["detailReservation", id],
+    queryFn: async () => {
+      const { data } = await axiosInstance.get(`/detail-reservations/${id}`);
+      return data;
+    },
+    enabled: !!id,
+  });
+};

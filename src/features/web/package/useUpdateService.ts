@@ -1,0 +1,20 @@
+import { useAxiosAuth } from "@/lib/axios";
+import { ActionProps } from "@/types/props/ActionProps";
+import { ServiceFormSchema } from "@/types/schema/ServiceSchema";
+import { onError } from "@/utils/ErrorHandler";
+import { useMutation } from "@tanstack/react-query";
+
+export const useUpdateService = ({ onSuccess }: ActionProps) => {
+  const axiosInstance = useAxiosAuth()
+ return useMutation({
+    mutationFn: async ({ id, ...rest }: ServiceFormSchema) => {
+      const { data } = await axiosInstance.patch(`/services/service/${id}`, {
+        id,
+        ...rest,
+      });
+      return data;
+    },
+    onSuccess,
+    onError,
+  });
+};

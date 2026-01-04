@@ -1,0 +1,334 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --primary: #435ebe;
+  --secondary: #2d499d;
+  interpolate-size: allow-keywords;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #6f42c1;
+    --foreground: #ededed;
+  }
+}
+
+/* * {
+  outline: 2px solid green !important;
+} */
+
+/* Pastikan date/time picker selalu muncul */
+input[type="date"],
+input[type="time"],
+input[type="datetime-local"],
+input[type="month"],
+input[type="week"] {
+  -webkit-appearance: auto !important;
+  appearance: auto !important;
+  position: relative;
+  color-scheme: light; /* Pastikan menggunakan light theme */
+}
+
+/* Webkit browsers (Chrome, Safari, Edge) - PAKSA TERLIHAT */
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="time"]::-webkit-calendar-picker-indicator,
+input[type="datetime-local"]::-webkit-calendar-picker-indicator,
+input[type="month"]::-webkit-calendar-picker-indicator,
+input[type="week"]::-webkit-calendar-picker-indicator {
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  cursor: pointer !important;
+
+  /* Paksa tampilkan dengan background image */
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%23374151'%3e%3cpath fill-rule='evenodd' d='M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z' clip-rule='evenodd'/%3e%3c/svg%3e") !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: 16px 16px !important;
+
+  position: absolute !important;
+  right: 8px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  width: 20px !important;
+  height: 20px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+
+  /* Warna background untuk kontras */
+  background-color: transparent !important;
+  color: #374151 !important;
+
+  /* Reset any filters */
+  filter: none !important;
+  -webkit-filter: none !important;
+}
+
+/* Khusus untuk time input - gunakan icon clock */
+input[type="time"]::-webkit-calendar-picker-indicator {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%23374151'%3e%3cpath fill-rule='evenodd' d='M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z' clip-rule='evenodd'/%3e%3c/svg%3e") !important;
+}
+
+/* Firefox */
+input[type="date"]::-moz-calendar-picker-indicator,
+input[type="time"]::-moz-time-picker-indicator {
+  opacity: 1 !important;
+  visibility: visible !important;
+  cursor: pointer !important;
+  width: 20px !important;
+  height: 20px !important;
+}
+
+/* Hover effect yang lebih jelas */
+input[type="date"]::-webkit-calendar-picker-indicator:hover,
+input[type="time"]::-webkit-calendar-picker-indicator:hover,
+input[type="datetime-local"]::-webkit-calendar-picker-indicator:hover {
+  background-color: rgba(0, 0, 0, 0.1) !important;
+  border-radius: 4px !important;
+}
+
+/* Untuk dark mode jika dibutuhkan */
+@media (prefers-color-scheme: dark) {
+  input[type="date"]::-webkit-calendar-picker-indicator,
+  input[type="time"]::-webkit-calendar-picker-indicator,
+  input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%23ffffff'%3e%3cpath fill-rule='evenodd' d='M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z' clip-rule='evenodd'/%3e%3c/svg%3e") !important;
+    color: #ffffff !important;
+  }
+
+  input[type="time"]::-webkit-calendar-picker-indicator {
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%23ffffff'%3e%3cpath fill-rule='evenodd' d='M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z' clip-rule='evenodd'/%3e%3c/svg%3e") !important;
+  }
+}
+input[type="radio"] {
+  @apply focus:bg-primary  focus:!outline-none focus:ring-2   focus:ring-transparent checked:bg-primary;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 0;
+  margin: 0;
+}
+
+@font-face {
+  font-family: "quicksand";
+  src: url("/fonts/Quicksand.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Nunito";
+  src: url("/fonts/Nunito.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Open Sans";
+  src: url("/fonts/OpenSans.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.transition-ease-in-out {
+  @apply transition-all duration-300 ease-in-out;
+}
+
+.transition-linear {
+  @apply transition-all duration-300 ease-linear;
+}
+
+.transition-ease-in {
+  @apply transition-all duration-300 ease-in;
+}
+
+.transition-ease-out {
+  @apply transition-all duration-300 ease-out;
+}
+
+.transition-ease-in-out-10 {
+  @apply transition-all duration-1000 ease-in-out;
+}
+
+.transition-linear-10 {
+  @apply transition-all duration-1000 ease-linear;
+}
+
+.transition-ease-in-10 {
+  @apply transition-all duration-1000 ease-in;
+}
+
+.transition-ease-out-10 {
+  @apply transition-all duration-1000 ease-out;
+}
+
+.status {
+  @apply rounded p-1 px-2 transition-ease-in-out italic cursor-pointer w-fit;
+}
+.status-pay {
+  @apply bg-cyan-400 hover:bg-cyan-300 status;
+}
+.status-waiting {
+  @apply bg-yellow-300 hover:bg-yellow-200 status;
+}
+.status-negatif-success {
+  @apply bg-red-500 hover:bg-red-500 status text-white;
+}
+
+.status-success {
+  @apply bg-green-700 hover:bg-green-900 status text-white;
+}
+
+.status-unknown {
+  @apply bg-slate-950  text-white status hover:bg-slate-700;
+}
+.status-cancel {
+  @apply bg-slate-500 text-white status hover:bg-slate-700;
+}
+
+.custom-scroll-bar {
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: theme("colors.white"); /* warna awal */
+    border-radius: 9999px;
+    transition: background-color 0.3s ease-in-out;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: theme("colors.white"); /* warna awal */
+    border-radius: 9999px;
+    transition: background-color 0.3s ease-in-out;
+  }
+
+  /* saat hover di container */
+  &:hover::-webkit-scrollbar-thumb {
+    background-color: theme("colors.gray.300"); /* warna akhir */
+  }
+
+  &:hover::-webkit-scrollbar-track {
+    background-color: theme("colors.gray.100"); /* warna akhir */
+  }
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: transparent;
+  height: 1.5rem;
+  padding: 0;
+  width: 100%;
+}
+
+input[type="range"]:focus {
+  outline: 0;
+}
+
+input[type="range"]:focus::-webkit-slider-thumb {
+  box-shadow: 0 0 0 1px #f2f7ff, 0 0 0 0.25rem rgba(67, 94, 190, 0.25);
+}
+
+input[type="range"]:focus::-moz-range-thumb {
+  box-shadow: 0 0 0 1px #f2f7ff, 0 0 0 0.25rem rgba(67, 94, 190, 0.25);
+}
+
+input[type="range"]::-moz-focus-outer {
+  border: 0;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #435ebe;
+  border: 0;
+  border-radius: 1rem;
+  height: 1rem;
+  margin-top: -0.25rem;
+  -webkit-transition: background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out;
+  width: 1rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-transition: none;
+    transition: none;
+  }
+}
+
+input[type="range"]::-webkit-slider-thumb:active {
+  background-color: #c7cfec;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  background-color: #dee2e6;
+  border-color: transparent;
+  border-radius: 1rem;
+  color: transparent;
+  cursor: pointer;
+  height: 0.5rem;
+  width: 100%;
+}
+
+input[type="range"]::-moz-range-thumb {
+  -moz-appearance: none;
+  appearance: none;
+  background-color: #435ebe;
+  border: 0;
+  border-radius: 1rem;
+  height: 1rem;
+  -moz-transition: background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out;
+  width: 1rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  input[type="range"]::-moz-range-thumb {
+    -moz-transition: none;
+    transition: none;
+  }
+}
+
+input[type="range"]::-moz-range-thumb:active {
+  background-color: #c7cfec;
+}
+
+input[type="range"]::-moz-range-track {
+  background-color: #dee2e6;
+  border-color: transparent;
+  border-radius: 1rem;
+  color: transparent;
+  cursor: pointer;
+  height: 0.5rem;
+  width: 100%;
+}
+
+input[type="range"]:disabled {
+  pointer-events: none;
+}
+
+input[type="range"]:disabled::-webkit-slider-thumb {
+  background-color: #adb5bd;
+}
+
+input[type="range"]:disabled::-moz-range-thumb {
+  background-color: #adb5bd;
+}
+
+.filepond--item {
+  padding: 0.5rem;
+}

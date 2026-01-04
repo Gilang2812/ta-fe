@@ -1,0 +1,15 @@
+import { useAxiosAuth } from "@/lib/axios";
+import { CraftDetailSchema } from "@/types/schema/CraftSchema";
+import { useQuery } from "@tanstack/react-query";
+
+export const useGetCraft = (id: string) => {
+  const axiosInstance = useAxiosAuth()
+ return useQuery<CraftDetailSchema>({
+    queryKey: ["craft", id],
+    queryFn: async () => {
+      const { data } = await axiosInstance.get(`/crafts/${id}`);
+      return data;
+    },
+    enabled: !!id,
+  });
+};

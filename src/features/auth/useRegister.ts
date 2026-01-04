@@ -1,0 +1,17 @@
+import { useAxiosAuth } from "@/lib/axios"
+import { ActionProps } from "@/types/props/ActionProps"
+import { onError } from "@/utils/ErrorHandler"
+import { RegisterSchema } from "@/validation/authSchema"
+import { useMutation } from "@tanstack/react-query"
+
+export const useRegister = ({onSuccess}:ActionProps)=>{
+    const axiosInstance = useAxiosAuth()
+ return useMutation({
+        mutationFn:async(body:RegisterSchema)=>{
+            const { data } = await axiosInstance.post('/register',body)
+            return data
+        },
+        onSuccess,
+        onError
+    })
+}

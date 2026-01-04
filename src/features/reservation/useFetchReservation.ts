@@ -1,0 +1,14 @@
+import { useQuery } from "@tanstack/react-query";
+import { useAxiosAuth } from "@/lib/axios";
+import { ReservationSchema } from "@/types/schema/ReservationSchema";
+
+export const useFetchReservations = () => {
+  const axiosInstance = useAxiosAuth()
+ return useQuery<ReservationSchema[]>({
+    queryKey: ["all_package_reservation"],
+    queryFn: async () => {
+      const { data } = await axiosInstance.get(`/reservations`);
+      return data;
+    },
+  });
+};

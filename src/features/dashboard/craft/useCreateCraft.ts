@@ -1,0 +1,17 @@
+import { useAxiosAuth } from "@/lib/axios";
+import { ActionProps } from "@/types/props/ActionProps";
+import { Craft } from "@/types/schema/CraftSchema";
+import { onError } from "@/utils/ErrorHandler";
+import { useMutation } from "@tanstack/react-query";
+
+export const useCreateCraft = ({ onSuccess }: ActionProps) => {
+  const axiosInstance = useAxiosAuth()
+ return useMutation({
+    mutationFn: async (craft: Craft) => {
+      const { data } = await axiosInstance.post("/crafts", craft);
+      return data;
+    },
+    onSuccess,
+    onError: onError,
+  });
+};
