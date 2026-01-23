@@ -12,10 +12,11 @@ export const useUpdateCraftCart = ({ onSuccess }: ActionProps) => {
       craft_variant_id,
       jumlah,
       checkout_id,
+      unit_price,
     }: UpdateCraftCartForm) => {
       const { data } = await axiosInstance.patch(
         `/craft-carts/${craft_variant_id}/${id_souvenir_place}/${checkout_id}`,
-        { jumlah }
+        { jumlah, unit_price }
       );
       return data;
     },

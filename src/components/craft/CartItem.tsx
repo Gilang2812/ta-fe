@@ -97,17 +97,17 @@ export const CartItemComponent = ({
               id_souvenir_place: item?.id_souvenir_place,
               checkout_id: item?.checkout_id,
               jumlah: item?.jumlah,
-              price: item?.detailCraft?.price,
+              unit_price: item?.detailCraft?.price,
             })
           }
           checked={selectedCraft.some(
             (itemChecked) =>
               itemChecked?.craft_variant_id?.toLowerCase() ===
-                item?.craft_variant_id?.toLowerCase() &&
+              item?.craft_variant_id?.toLowerCase() &&
               itemChecked?.id_souvenir_place?.toLowerCase() ===
-                item?.id_souvenir_place?.toLowerCase() &&
+              item?.id_souvenir_place?.toLowerCase() &&
               itemChecked?.checkout_id?.toLowerCase() ===
-                item?.checkout_id?.toLowerCase()
+              item?.checkout_id?.toLowerCase()
           )}
         />
       </td>
@@ -137,7 +137,7 @@ export const CartItemComponent = ({
             checkout_id: item?.checkout_id,
             id_souvenir_place: item?.id_souvenir_place,
             jumlah: item?.jumlah,
-            price: item?.detailCraft?.price,
+            unit_price: item?.detailCraft?.price,
           }}
           onSubmit={handleSubmit}
         >

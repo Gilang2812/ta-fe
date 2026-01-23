@@ -64,11 +64,11 @@ const CraftCart = () => {
           handleCheckout={handleCheckout}
           isDirty={isDirty}
           subtotal={selectedCraft.reduce(
-            (acc, curr) => acc + curr.jumlah * curr.price,
+            (acc, curr) => acc + curr.jumlah * curr.unit_price,
             0
           )}
           total={selectedCraft.reduce(
-            (acc, curr) => acc + curr.jumlah * curr.price,
+            (acc, curr) => acc + curr.jumlah * curr.unit_price,
             0
           )}
         />

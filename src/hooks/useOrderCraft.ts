@@ -36,12 +36,13 @@ export const useOrderCraft = () => {
       handleRequestLogin(pathname);
       return;
     }
-    const { id_souvenir_place, craft_variant_id, jumlah } = values;
+    const { id_souvenir_place, craft_variant_id, jumlah, unit_price } = values;
     if (actionRef.current === "cart") {
       await createCraftCart({
         jumlah,
         id_souvenir_place,
         craft_variant_id: searchParms.get("idvr") || craft_variant_id,
+        unit_price: unit_price,
       });
     } else if (actionRef.current === "buy") {
       if (!user?.phone || !user?.address) {
@@ -61,6 +62,7 @@ export const useOrderCraft = () => {
             jumlah,
             craft_variant_id: searchParms.get("idvr") || craft_variant_id,
             id_souvenir_place,
+            unit_price,
           },
         ],
       });

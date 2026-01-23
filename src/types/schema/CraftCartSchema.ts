@@ -13,13 +13,13 @@ export type CraftCartForm = yup.InferType<typeof craftCart> & {
   craft_variant_id: string;
   id_souvenir_place: string;
   checkout_id?: string;
+  unit_price: number;
 };
 
 export type UpdateCraftCartForm = CraftCartForm & {
   checkout_id: string;
 };
-export type CraftCartSchema = CraftCartForm & { price: number };
-
+export type CraftCartSchema = CraftCartForm 
 export type CartItemProps = CraftCartForm & {
   checkout_id: string;
   checkout: CraftCartCheckout;

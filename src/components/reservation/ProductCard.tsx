@@ -22,7 +22,7 @@ export const ProductCard = ({ product }: Props) => (
     </div>
     <div className="text-right">
       <div className="font-medium ">
-        {formatPrice(product?.detailCraft?.price)}
+        {formatPrice(product?.unit_price)}
       </div>
       <div className="text-sm ">Qty: {product.jumlah}</div>
     </div>

@@ -20,9 +20,9 @@ export const UserDetailPage: FC<Props> = ({ history }) => {
       <div className="mb-4">
         <div className="flex items-center justify-between">
           <div>
-            {history.awb ? (
+            {history.tracking_id ? (
               <h2 className="text-xl font-bold mb-3 text-primary">
-                Receipt No. {history.awb}
+                Receipt No. {history.shipping_no}
               </h2>
             ) : (
               <h2 className="text-xl font-bold mb-3 italic">
@@ -55,7 +55,7 @@ export const UserDetailPage: FC<Props> = ({ history }) => {
             },
             {
               label: "Payment Method",
-              value: history.shippingItems[0].checkout.payment,
+              value: history.shippingItems[0].checkout.payment.replaceAll("_", " "),
             },
             {
               label: "Total Payment",
@@ -87,9 +87,8 @@ export const UserDetailPage: FC<Props> = ({ history }) => {
           <div className="text-sm  space-y-1">
             <div>
               <strong>Courier:&nbsp;</strong>
-              {`${history?.shipping_name ?? ""} (${
-                history?.shipping_type ?? ""
-              })`}
+              {`${history?.shipping_name ?? ""} (${history?.shipping_type ?? ""
+                })`}
             </div>
             <div>
               <strong>Shipping Cost:&nbsp;</strong>
@@ -120,7 +119,7 @@ export const UserDetailPage: FC<Props> = ({ history }) => {
             <span>
               {formatPrice(
                 history?.shippingItems?.reduce(
-                  (acc, item) => acc + item?.detailCraft?.price * item?.jumlah,
+                  (acc, item) => acc + item?.unit_price * item?.jumlah,
                   0
                 )
               )}

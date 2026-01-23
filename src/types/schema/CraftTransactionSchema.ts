@@ -41,6 +41,7 @@ export type ShippingItem = {
   id_souvenir_place: string;
   shipping_id: string;
   jumlah: number;
+  unit_price: number;
   review_text: string;
   review_rating: number;
   review_date: string;

@@ -82,7 +82,10 @@ const HistoryList: FC<Props> = ({
               <div className="">Total</div>
               <p className="font-extrabold text-xl text-secondary">
                 {formatPrice(
-                  history?.shippingItems?.[0]?.checkout?.total_price ?? 0
+                  history?.shippingItems?.reduce(
+                    (acc, item) => acc + item.jumlah * item.unit_price,
+                    0
+                  )
                 )}
               </p>
             </div>
@@ -140,6 +143,7 @@ const HistoryList: FC<Props> = ({
                 craft_variant_id: item.craft_variant_id,
                 id_souvenir_place: item.id_souvenir_place,
                 jumlah: item.jumlah,
+                unit_price: item.unit_price,
               }))
             );
           }}

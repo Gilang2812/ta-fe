@@ -29,7 +29,7 @@ export const useUserCraftCart = () => {
         cornerAlert("jumlah berhasil diupdate!");
         refetch();
       },
-    }
+    },
   );
 
   const { mutateAsync: deleteCraftCart, isPending: isDeleting } =
@@ -50,7 +50,7 @@ export const useUserCraftCart = () => {
       id_souvenir_place: string;
       checkout_id: string;
     },
-    name: string
+    name: string,
   ) => {
     confirmDeleteAlert("craft item", name, async () => {
       await deleteCraftCart({
@@ -74,14 +74,14 @@ export const useUserCraftCart = () => {
     if (carts) {
       setSelectedCraft((prev) => {
         const filteredCarts = carts.filter((item) =>
-          prev.map((i) => i.craft_variant_id).includes(item.craft_variant_id)
+          prev.map((i) => i.craft_variant_id).includes(item.craft_variant_id),
         );
         return filteredCarts.map((item) => ({
           craft_variant_id: item.craft_variant_id,
           id_souvenir_place: item.id_souvenir_place,
           checkout_id: item.checkout_id,
           jumlah: item.jumlah,
-          price: item.detailCraft.price,
+          unit_price: item.detailCraft.price,
         }));
       });
     }
@@ -97,7 +97,7 @@ export const useUserCraftCart = () => {
         (item) =>
           item.craft_variant_id === craft.craft_variant_id &&
           item.id_souvenir_place === craft.id_souvenir_place &&
-          item.checkout_id === craft.checkout_id
+          item.checkout_id === craft.checkout_id,
       );
       if (index > -1) {
         return prev.filter(
@@ -106,7 +106,7 @@ export const useUserCraftCart = () => {
               item.craft_variant_id === craft.craft_variant_id &&
               item.id_souvenir_place === craft.id_souvenir_place &&
               item.checkout_id === craft.checkout_id
-            )
+            ),
         );
       } else {
         return [...prev, craft];

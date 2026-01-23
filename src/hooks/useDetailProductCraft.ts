@@ -36,7 +36,7 @@ export const useDetailProductCraft = ({
       params.set(name, value);
       return params.toString();
     },
-    [searchParms]
+    [searchParms],
   );
 
   const {
@@ -50,20 +50,21 @@ export const useDetailProductCraft = ({
     selectedDetailCraft,
   } = useProdukGallery();
 
-  const initialValues: CraftCartForm = {
-    craft_variant_id: idVariant,
-    id_souvenir_place: id_souvenir_place,
-    jumlah: 1,
-  };
-
   const { data: crafts, isLoading } = useFetchOrderDetailCraft({
     id_craft,
     id_souvenir_place,
   });
 
+  const initialValues: CraftCartForm = {
+    craft_variant_id: idVariant,
+    id_souvenir_place: id_souvenir_place,
+    jumlah: 1,
+    unit_price: selectedDetailCraft?.price || 0,
+  };
+
   const initalDetailCraft =
     crafts?.find(
-      (vr) => vr.craft_variant_id.toLowerCase() === idVariant.toLowerCase()
+      (vr) => vr.craft_variant_id.toLowerCase() === idVariant.toLowerCase(),
     ) || crafts?.[0];
 
   const mainImage = selectedDetailCraft?.craftGalleries?.[0]?.url || "";
@@ -81,11 +82,11 @@ export const useDetailProductCraft = ({
   }, [mainImage, setSelectedImage]);
 
   const handleSelectedDetailCraft = (
-    detailCraft: DetailCraftOrderResponse | DetailCraftManagementResponse
+    detailCraft: DetailCraftOrderResponse | DetailCraftManagementResponse,
   ) => {
     setSelectedDetailCraft(detailCraft);
     router.push(
-      `${pathName}?${createQueryString("idvr", detailCraft.craft_variant_id)}`
+      `${pathName}?${createQueryString("idvr", detailCraft.craft_variant_id)}`,
     );
   };
 
