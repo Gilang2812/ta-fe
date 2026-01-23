@@ -165,8 +165,8 @@ const Marketplace = () => {
         <section className="flex gap-2 w-full items-start">
           <ManagementHeader
             asChild
-            content="marketplace"
-            title="manage marketplace"
+            content="Store"
+            title="manage store"
             href={ROUTES.NEW_MARKETPLACE}
           />
           {data.length > 0 && (
@@ -191,7 +191,7 @@ const Marketplace = () => {
           onClose={toggleModal}
           title={
             modalType === "detail"
-              ? `Detail marketplace`
+              ? `Detail Store`
               : modalType === "form"
               ? `Recruit Staff`
               : `Recruit Info`

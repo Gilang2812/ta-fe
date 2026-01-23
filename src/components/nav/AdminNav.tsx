@@ -37,7 +37,7 @@ export const AdminNav = () => {
             <li>
               <SideNavItem
                 icon={FaStore}
-                label="Your Marketplace"
+                label="Your Store"
                 link={ROUTES.MARKETPLACE}
               />
             </li>
@@ -106,11 +106,11 @@ export const AdminNav = () => {
             <li>
               <DropDownItem
                 icon={MdLocalConvenienceStore}
-                label="Manage Marketplace"
+                label="Manage Store"
               >
                 <DropDownChildrenItem
                   icon={FaStore}
-                  label="Marketplace"
+                  label="Store"
                   link={ROUTES.MANAGE_MARKETPLACE}
                 />
                 <DropDownChildrenItem
