@@ -17,7 +17,7 @@ const MapCraft = () => {
 
   const MapCraftRightGrid = () => {
     return (
-      <div className="w-full relative max-h-screen overflow-y-auto">
+      <div className="w-full relative  overflow-y-auto">
         {packageOpen ? (
           <TourismPackage />
         ) : aroundOpen ? (
@@ -37,7 +37,7 @@ const MapCraft = () => {
     <ContentDiffSplitted
       left={
         <MapWeb zoom={17}>
-          {!aroundOpen && (
+          {(
             <SouvenirGeoJSON
               handleSelectStore={handleSelectStore}
               data={data}
