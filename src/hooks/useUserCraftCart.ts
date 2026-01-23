@@ -1,7 +1,7 @@
 import { useDeleteCraftCart } from "@/features/web/craftCart/useDeleteCraftCart";
 import { useFetchCraftCart } from "@/features/web/craftCart/useFetchCraftCart";
 import { useUpdateCraftCart } from "@/features/web/craftCart/useUpdateCraftCart";
-import { CraftCartSchema } from "@/types/schema/CraftCartSchema";
+import { CartItemProps, CraftCartSchema } from "@/types/schema/CraftCartSchema";
 import {
   confirmDeleteAlert,
   cornerAlert,
@@ -120,6 +120,19 @@ export const useUserCraftCart = () => {
     }
   }, [isUpdating]);
 
+  const groupedCarts =
+    carts?.reduce(
+      (groups, item) => {
+        const key = item.id_souvenir_place;
+        if (!groups[key]) {
+          groups[key] = [];
+        }
+        groups[key].push(item);
+        return groups;
+      },
+      {} as Record<string, CartItemProps[]>,
+    ) ?? {};
+
   return {
     carts,
     isLoading,
@@ -131,5 +144,6 @@ export const useUserCraftCart = () => {
     selectedCraft,
     handleCheckedCraft,
     handleCheckout,
+    groupedCarts,
   };
 };

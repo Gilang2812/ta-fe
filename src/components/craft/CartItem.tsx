@@ -127,7 +127,7 @@ export const CartItemComponent = ({
       </td>
 
       <td className="mx-4">
-        <p className="text-gray-600">{formatPrice(item?.detailCraft?.price)}</p>
+        <p className=" text-nowrap">{formatPrice(item?.detailCraft?.price)}</p>
       </td>
 
       <td className="">
@@ -170,5 +170,7 @@ export const CartItemComponent = ({
         </button>
       </td>
     </tr>
+
+
   );
 };

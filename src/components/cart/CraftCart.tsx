@@ -1,13 +1,13 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { CartItemComponent } from "../craft/CartItem";
 import { CartSummary } from "../craft/CartSummary";
 import { motion } from "framer-motion";
 import { useUserCraftCart } from "@/hooks/useUserCraftCart";
 import CraftCartSkeletonLoader from "../loading/CraftCartSkeletonLoader";
+import { FaStore } from "react-icons/fa6";
 
 const CraftCart = () => {
   const {
-    carts,
     isLoading,
     isUpdating,
     updateCraftCart,
@@ -17,6 +17,7 @@ const CraftCart = () => {
     handleCheckedCraft,
     selectedCraft,
     handleCheckout,
+    groupedCarts
   } = useUserCraftCart();
 
   if (isLoading) {
@@ -42,17 +43,33 @@ const CraftCart = () => {
             </thead>
 
             <tbody className="space-y-4">
-              {carts?.map((item) => (
-                <CartItemComponent
-                  setDirty={setIsDirty}
-                  selectedCraft={selectedCraft}
-                  isUpdating={isUpdating}
-                  updateCart={updateCraftCart}
-                  key={`${item.checkout_id}-${item.craft_variant_id}-${item.id_souvenir_place}`}
-                  item={item}
-                  handleDeleteCart={handleDeleteCraftCart}
-                  handleCheckedCraft={handleCheckedCraft}
-                />
+
+              {Object.values(groupedCarts).map((group, index) => (
+                <Fragment key={index}>
+                  <tr key={index} className="bg-primary/30 ">
+                    <td colSpan={6} className="font-semibold p-2">
+                      <div className="flex items-center gap-2">
+                        <FaStore />
+                        {group[0].detailCraft.souvenirPlace.name}
+                      </div>
+                    </td>
+                  </tr>
+                  {group.map((item) => (
+                    <CartItemComponent
+                      setDirty={setIsDirty}
+                      selectedCraft={selectedCraft}
+                      isUpdating={isUpdating}
+                      updateCart={updateCraftCart}
+                      key={`${item.checkout_id}-${item.craft_variant_id}-${item.id_souvenir_place}`}
+                      item={item}
+                      handleDeleteCart={handleDeleteCraftCart}
+                      handleCheckedCraft={handleCheckedCraft}
+                    />
+                  ))}
+                  <tr>
+                    <td colSpan={6} >  </td>
+                  </tr>
+                </Fragment>
               ))}
             </tbody>
           </table>

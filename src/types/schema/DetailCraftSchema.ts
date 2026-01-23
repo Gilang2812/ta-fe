@@ -3,7 +3,7 @@ import { CraftVariantGallery, FetchCraftVariant } from "./CraftSchema";
 import { CheckoutItem } from "./CheckoutSchema";
 import { SouvenirPlace } from "./CraftTransactionSchema";
 import { FilepondType } from "../common/FilepondType";
-import { LocationSchema } from "./LocationSchema";
+import { LocationSchema } from "./LocationSchema"; 
 export type DetailCraftInclude = (
   | "craft"
   | "craftGalleries"
@@ -22,7 +22,7 @@ export const detailCraftSchema = yup.object({
   weight: yup
     .number()
     .typeError(
-      "Berat harus berupa angka, ganti tanda koma (',') dengan titik ('.') jika ada"
+      "Berat harus berupa angka, ganti tanda koma (',') dengan titik ('.') jika ada",
     )
     .moreThan(0, "Berat harus lebih dari 0")
     .required("Berat wajib diisi"),
@@ -50,6 +50,7 @@ export type DetailCraftManagementResponse = DetailCraftSchema & {
   id_souvenir_place: string;
   variant: FetchCraftVariant;
   craftGalleries: CraftVariantGallery[];
+  souvenirPlace: SouvenirPlace & { contact_person: string };
 };
 
 export type DetailCraftUserResponse = DetailCraftManagementResponse & {
