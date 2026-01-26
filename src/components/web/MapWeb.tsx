@@ -154,11 +154,11 @@ function MapWeb({
           mapRef={mapRef}
           origin={userLocation || clickedPosition}
           onClick={handleManualLocation}
-          mapTypeId={`${isTerrain ? "terrain" : showLabel ? "hybrid" : "satellite"}`}
+          mapTypeId={`${isTerrain ? "terrain" : "satellite"}`}
 
           zoom={zoom || 17}
           options={{
-            mapTypeId: `${isTerrain ? "terrain" : showLabel ? "hybrid" : "satellite"}`,
+            mapTypeId: `${isTerrain ? "terrain" : "satellite"}`,
             scaleControl: true,
             rotateControl: true,
           }}
